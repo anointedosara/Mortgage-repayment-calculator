@@ -1,137 +1,14 @@
-[00:00:02.360] Server  LOG      ✓ Ready in 1569ms
-[00:00:12.038] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<SegmentViewNode>} forbidden={undefined} ...>
-      <RedirectBoundary>
-        <RedirectErrorBoundary router={{...}}>
-          <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{lazyData:null, ...}} segmentPath={[...]} ...>
-            <SegmentViewNode type="page" pagePath="page.js">
-              <SegmentTrieNode>
-              <ClientPageRoot Component={function Home} serverProvidedParams={{...}}>
-                <Home params={Promise} searchParams={Promise}>
-                  <main className="flex md:it...">
-                    <section className="flex items...">
-                      <Calculator>
-                        <div className="w-full max...">
-                          <div className="flex items...">
-                            <h1>
-                            <button
-                              type="submit"
-                              onClick={function clearAll}
-                              className="text-[14px] md:text-[17px] text-slate-700 hover:text-slate-900 underline unde..."
--                             fdprocessedid="gtv8t7"
-                            >
-+                             Clear All
-                          <form onSubmit={function handleSubmit} className="mt-7">
-                            <label>
-                            <div className="group bord...">
-                              <div>
-                              <input
-                                className="w-full border-0 outline-0 text-[20px] font-bold px-4 no-spinner text-slate-900"
-                                type="number"
-                                id="amount"
-                                value=""
-                                onChange={function handleAmount}
--                               fdprocessedid="hx6qbc"
-                              >
-                            <span>
-                            <div className="flex w-ful...">
-                              <div className="w-full md:...">
-                                <label>
-                                <div className="group bord...">
-                                  <input
-                                    className="w-full border-0 outline-0 text-[20px] font-bold px-4 no-spinner text-sl..."
-                                    type="number"
-                                    id="term"
-                                    value=""
-                                    onChange={function handleTerm}
--                                   fdprocessedid="wnwp7qe"
-                                  >
-                                  ...
-                                ...
-                              <div className="w-full md:...">
-                                <label>
-                                <div className="group bord...">
-                                  <input
-                                    className="w-full border-0 outline-0 text-[20px] font-bold px-4 no-spinner text-sl..."
-                                    type="number"
-                                    id="rate"
-                                    value=""
-                                    onChange={function handleRate}
--                                   fdprocessedid="9zbur"
-                                  >
-                                  ...
-                                ...
-                            <fieldset>
-                            <span>
-                            <button
-                              className="flex cursor-pointer items-center justify-center rounded-4xl font-bold text-sl..."
-                              type="submit"
--                             fdprocessedid="m12ykk"
-                            >
-                      ...
-            ...
-          ...
-
-[00:01:08.344] Server  LOG      ✓ Compiled in 60ms
-[00:01:10.875] Browser WARN    Image with src "illustration-empty.svg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+[00:00:03.175] Server  LOG      ✓ Ready in 2.2s
+[00:00:07.994] Browser WARN    Image with src "illustration-empty.svg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
 Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[00:01:22.781] Browser WARN    Image with src "illustration-empty.svg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+[00:00:36.700] Server  LOG      ✓ Compiled in 57ms
+[00:00:53.054] Server  LOG      ✓ Compiled in 37ms
+[00:01:02.494] Server  LOG      ✓ Compiled in 57ms
+[00:01:13.780] Server  LOG      ✓ Compiled in 35ms
+[00:01:59.589] Server  LOG      ✓ Compiled in 60ms
+[00:02:20.280] Server  LOG      ✓ Compiled in 41ms
+[00:02:26.794] Browser ERROR   uncaughtError: ReferenceError: selected is not defined
+[00:02:39.109] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:02:39.141] Server  LOG      ✓ Compiled in 30ms
+[00:02:41.993] Browser WARN    Image with src "illustration-empty.svg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
 Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[00:03:39.349] Server  LOG      ✓ Compiled in 33ms
-[00:04:59.397] Server  LOG      ✓ Compiled in 60ms
-[00:05:34.810] Server  LOG      ✓ Compiled in 30ms
-[00:06:32.703] Server  LOG      ✓ Compiled in 37ms
-[00:06:50.261] Server  LOG      ✓ Compiled in 31ms
-[00:06:59.941] Server  LOG      ✓ Compiled in 26ms
-[00:07:30.388] Server  LOG      ✓ Compiled in 26ms
-[00:07:46.109] Server  LOG      ✓ Compiled in 27ms
-[00:07:49.527] Server  LOG      ✓ Compiled in 27ms
-[00:08:03.017] Server  LOG      ✓ Compiled in 46ms
-[00:08:04.050] Browser ERROR   uncaughtError: TypeError: Cannot read properties of null (reading 'monthlyRepayment')
-[00:08:12.326] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[00:08:12.644] Server  LOG      ✓ Compiled in 31ms
-[00:08:13.352] Browser WARN    Image with src "illustration-empty.svg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[00:08:17.056] Server  LOG      ✓ Compiled in 27ms
-[00:08:26.499] Browser ERROR   uncaughtError: TypeError: Cannot read properties of null (reading 'monthlyRepayment')
-[00:08:34.198] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[00:08:34.486] Server  LOG      ✓ Compiled in 30ms
-[00:08:36.230] Browser WARN    Image with src "illustration-empty.svg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[00:09:00.822] Server  LOG      ✓ Compiled in 44ms
-[00:09:16.662] Server  LOG      ✓ Compiled in 32ms
-[00:09:31.315] Server  LOG      ✓ Compiled in 29ms
-[00:09:51.559] Server  LOG      ✓ Compiled in 40ms
-[00:10:46.716] Server  LOG      ✓ Compiled in 25ms
-[00:10:51.497] Browser WARN    Image with src "illustration-empty.svg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[00:11:40.550] Server  LOG      ✓ Compiled in 49ms
-[00:13:44.195] Server  LOG      ✓ Compiled in 170ms
-[00:16:06.553] Server  LOG      ✓ Compiled in 27ms
-[00:16:41.434] Server  LOG      ✓ Compiled in 35ms
-[00:16:42.048] Browser ERROR   A component is changing an uncontrolled input to be controlled. This is likely caused by the value changing from undefined to a defined value, which should not happen. Decide between using a controlled or uncontrolled input element for the lifetime of the component. More info: https://react.dev/link/controlled-components
-[00:16:49.534] Browser WARN    Image with src "illustration-empty.svg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[00:17:08.364] Server  LOG      ✓ Compiled in 40ms
-[00:17:09.044] Browser ERROR   A component is changing a controlled input to be uncontrolled. This is likely caused by the value changing from a defined to undefined, which should not happen. Decide between using a controlled or uncontrolled input element for the lifetime of the component. More info: https://react.dev/link/controlled-components
-[00:17:13.699] Browser WARN    Image with src "illustration-empty.svg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[00:17:29.531] Server  LOG      ✓ Compiled in 34ms
-[00:17:30.036] Browser ERROR   A component is changing an uncontrolled input to be controlled. This is likely caused by the value changing from undefined to a defined value, which should not happen. Decide between using a controlled or uncontrolled input element for the lifetime of the component. More info: https://react.dev/link/controlled-components
-[00:19:02.669] Server  LOG      ✓ Compiled in 36ms
-[00:19:10.977] Browser WARN    Image with src "illustration-empty.svg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[00:25:15.634] Server  LOG      ✓ Compiled in 80ms
-[00:25:18.728] Server  LOG      ✓ Compiled in 26ms

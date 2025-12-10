@@ -10,6 +10,7 @@ export default function Home() {
   const [rate, setRate] = useState("");
   const [mortgageType, setMortgageType] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [selected, setSelected] = useState(false);
   const [showResult, setShowResult] = useState(false);
   const [calculations, setCalculations] = useState(null);
 
@@ -28,12 +29,13 @@ export default function Home() {
   const handleRate = e => setRate(e.target.value);
  const handleType = e => {
   setMortgageType(e.target.value);
-  setSubmitted(false);
+  setSelected(false);
 };
 
   const handleSubmit = e => {
     e.preventDefault();
     setSubmitted(true);
+    setSelected(true);
     setShowResult(false);
 
     if (
@@ -81,6 +83,7 @@ export default function Home() {
         clearAll,
         handleSubmit,
         submitted,
+        selected,
         showResult,
         amount,
         term,

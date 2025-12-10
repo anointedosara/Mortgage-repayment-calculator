@@ -4,7 +4,7 @@ import Image from "next/image";
 import React, { useContext } from "react";
 
 function Calculator() {
-  const {handleAmount, handleRate, handleTerm, handleType, mortgageType, submitted, handleSubmit, clearAll, amount, term, rate} = useContext(ResultContext)
+  const {handleAmount, handleRate, handleTerm, handleType, mortgageType, submitted, selected, handleSubmit, clearAll, amount, term, rate} = useContext(ResultContext)
   return (
     <div className="w-full max-w-[400px] md:max-w-full md:m-0 m-auto md:w-[50%] p-5 md:p-10">
       <div className="flex items-center justify-between">
@@ -50,7 +50,7 @@ function Calculator() {
           <label  className="w-full cursor-pointer font-bold text-[14px] md:text-[18px] border-2 has-focus:bg-yellow-200/20 has-checked:bg-yellow-200/20 has-focus:border-yellow-200 has-checked:border-yellow-200 border-slate-700 py-3 px-5 rounded-md flex items-center hover:border-yellow-200 transition-all" htmlFor="interest">
             <input className="mr-4 size-5 appearance-auto accent-yellow-200" type="radio" id="interest" name="mortgageType" value="interest" checked={mortgageType === "interest"} onChange={handleType} /> Interests Only
           </label>
-        <span className={` text-red-500 text-sm ${submitted && !mortgageType ? 'block' : 'hidden'}`}>This field is required</span>
+        <span className={` text-red-500 text-sm ${submitted && selected && !mortgageType ? 'block' : 'hidden'}`}>This field is required</span>
         </fieldset>
 
         <button className="flex cursor-pointer items-center justify-center rounded-4xl font-bold text-slate-900 p-4 text-[14px] md:text-[18px] bg-yellow-200 hover:bg-yellow-100 md:max-w-[350px] w-full mt-10 transition-all" type="submit"><Image className="w-6 mr-3" src='icon-calculator.svg' alt="" width={1000} height={1000} /> Calculate Repayments</button>
