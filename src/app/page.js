@@ -46,7 +46,6 @@ export default function Home() {
       return;
     }
 
-    // ✅ ---- RUN CALCULATION ONLY HERE ----
     const principal = Number(amount);
     const years = Number(term);
     const annualRate = Number(rate);
@@ -67,9 +66,9 @@ export default function Home() {
       monthlyRepayment,
       interestOnlyMonthly,
       totalRepaid
-    }); // ✅ SAVE RESULTS
+    });
 
-    setShowResult(true); // ✅ Show result ONLY after calculation
+    setShowResult(true);
   };
 
   return (
