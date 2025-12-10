@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@import "tailwindcss";
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  background: hsl(202, 86%, 94%);
+  min-height: 100vh;
+}
+:root {
+--color-yellow-200: hsl(61, 70%, 52%);
+--color-red-500: hsl(4, 69%, 50%);
+--color-white: hsl(0, 0%, 100%);
+--color-slate-100: hsl(202, 86%, 94%);
+--color-slate-300: hsl(203, 41%, 72%);
+--color-slate-500: hsl(200, 26%, 54%);
+--color-slate-700: hsl(200, 24%, 40%);
+--color-slate-900: hsl(202, 55%, 16%);
+}
+@layer utilities {
+  input[type="number"].no-spinner::-webkit-inner-spin-button,
+  input[type="number"].no-spinner::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"].no-spinner {
+    -moz-appearance: textfield;
+  }
+}
