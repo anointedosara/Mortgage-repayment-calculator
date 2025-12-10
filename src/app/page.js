@@ -2,7 +2,7 @@
 import Calculator from "@/components/Calculator";
 import Result from "@/components/Result";
 import { ResultContext } from "@/Contexts/ResultContext";
-import { useState, useMemo } from "react";
+import { useState } from "react";
 
 export default function Home() {
   const [amount, setAmount] = useState("");
@@ -11,6 +11,7 @@ export default function Home() {
   const [mortgageType, setMortgageType] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [showResult, setShowResult] = useState(false);
+  const [calculations, setCalculations] = useState(null);
 
   const clearAll = () => {
     setAmount("");
@@ -19,25 +20,21 @@ export default function Home() {
     setMortgageType("");
     setSubmitted(false);
     setShowResult(false);
+    setCalculations(null);
   };
 
-  const handleAmount = (e) => {
-    setAmount(e.target.value)
-  }
-  const handleTerm = (e) => {
-    setTerm(e.target.value)
-  }
-  const handleRate = (e) => {
-    setRate(e.target.value)
-  }
-  const handleType = (e) => {
-    setMortgageType(e.target.value)
-  }
+  const handleAmount = e => setAmount(e.target.value);
+  const handleTerm = e => setTerm(e.target.value);
+  const handleRate = e => setRate(e.target.value);
+ const handleType = e => {
+  setMortgageType(e.target.value);
+  setSubmitted(false);
+};
 
   const handleSubmit = e => {
     e.preventDefault();
     setSubmitted(true);
-    setShowResult(false)
+    setShowResult(false);
 
     if (
       amount === "" ||
@@ -45,16 +42,11 @@ export default function Home() {
       term === "" ||
       mortgageType === ""
     ) {
-      setShowResult(false);
-    } else {
-      setShowResult(true);
+      setCalculations(null);
+      return;
     }
-  };
 
-  // ✅ ---- ALL CALCULATIONS IN CONTEXT ----
-  const calculations = useMemo(() => {
-    if (!showResult) return null;
-
+    // ✅ ---- RUN CALCULATION ONLY HERE ----
     const principal = Number(amount);
     const years = Number(term);
     const annualRate = Number(rate);
@@ -70,13 +62,15 @@ export default function Home() {
     const totalRepaid = monthlyRepayment * totalMonths;
     const interestOnlyMonthly = principal * monthlyRate;
 
-    return {
+    setCalculations({
       monthlyRate,
       monthlyRepayment,
       interestOnlyMonthly,
       totalRepaid
-    };
-  }, [showResult]);
+    }); // ✅ SAVE RESULTS
+
+    setShowResult(true); // ✅ Show result ONLY after calculation
+  };
 
   return (
     <ResultContext.Provider

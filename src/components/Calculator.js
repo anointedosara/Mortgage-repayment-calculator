@@ -11,7 +11,7 @@ function Calculator() {
         <h1 className="text-slate-900 font-bold text-[18px] md:text-[22px] lg:text-[25px]">
           Mortgage Calculator
         </h1>
-        <button onClick={clearAll} className="text-[14px] md:text-[17px] text-slate-700 hover:text-slate-900 underline underline-offset-2 cursor-pointer transition-all">
+        <button type='submit' onClick={clearAll} className="text-[14px] md:text-[17px] text-slate-700 hover:text-slate-900 underline underline-offset-2 cursor-pointer transition-all">
           Clear All
         </button>
       </div>
@@ -45,13 +45,13 @@ function Calculator() {
         <fieldset className="mt-6 w-full gap-3 flex flex-col">
           <legend className="text-slate-700 text-[14px] md:text-[18px] mb-2">Mortgage Type</legend>
           <label className="w-full cursor-pointer has-focus:bg-yellow-200/20 has-checked:bg-yellow-200/20 has-focus:border-yellow-200 has-checked:border-yellow-200 font-bold text-[14px] md:text-[18px] border-2 border-slate-700 py-3 px-5 rounded-md flex items-center hover:border-yellow-200 transition-all" htmlFor="repayment">
-            <input className="mr-4 size-5 appearance-auto accent-yellow-200" type="radio" id="repayment" name="mortgageType" value="repayment" onChange={handleType}/> Repayment
+            <input className="mr-4 size-5 appearance-auto accent-yellow-200" type="radio" id="repayment" name="mortgageType" value="repayment" checked={mortgageType === "repayment"} onChange={handleType} /> Repayment
           </label>
           <label  className="w-full cursor-pointer font-bold text-[14px] md:text-[18px] border-2 has-focus:bg-yellow-200/20 has-checked:bg-yellow-200/20 has-focus:border-yellow-200 has-checked:border-yellow-200 border-slate-700 py-3 px-5 rounded-md flex items-center hover:border-yellow-200 transition-all" htmlFor="interest">
-            <input className="mr-4 size-5 appearance-auto accent-yellow-200" type="radio" id="interest" name="mortgageType" value="interest" onChange={handleType} /> Interests Only
+            <input className="mr-4 size-5 appearance-auto accent-yellow-200" type="radio" id="interest" name="mortgageType" value="interest" checked={mortgageType === "interest"} onChange={handleType} /> Interests Only
           </label>
-        </fieldset>
         <span className={` text-red-500 text-sm ${submitted && !mortgageType ? 'block' : 'hidden'}`}>This field is required</span>
+        </fieldset>
 
         <button className="flex cursor-pointer items-center justify-center rounded-4xl font-bold text-slate-900 p-4 text-[14px] md:text-[18px] bg-yellow-200 hover:bg-yellow-100 md:max-w-[350px] w-full mt-10 transition-all" type="submit"><Image className="w-6 mr-3" src='icon-calculator.svg' alt="" width={1000} height={1000} /> Calculate Repayments</button>
       </form>

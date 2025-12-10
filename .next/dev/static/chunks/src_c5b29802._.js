@@ -48,6 +48,7 @@ function Calculator() {
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                        type: "submit",
                         onClick: clearAll,
                         className: "text-[14px] md:text-[17px] text-slate-700 hover:text-slate-900 underline underline-offset-2 cursor-pointer transition-all",
                         children: "Clear All"
@@ -249,6 +250,7 @@ function Calculator() {
                                         id: "repayment",
                                         name: "mortgageType",
                                         value: "repayment",
+                                        checked: mortgageType === "repayment",
                                         onChange: handleType
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Calculator.js",
@@ -272,6 +274,7 @@ function Calculator() {
                                         id: "interest",
                                         name: "mortgageType",
                                         value: "interest",
+                                        checked: mortgageType === "interest",
                                         onChange: handleType
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Calculator.js",
@@ -284,19 +287,19 @@ function Calculator() {
                                 fileName: "[project]/src/components/Calculator.js",
                                 lineNumber: 50,
                                 columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                className: ` text-red-500 text-sm ${submitted && !mortgageType ? 'block' : 'hidden'}`,
+                                children: "This field is required"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/Calculator.js",
+                                lineNumber: 53,
+                                columnNumber: 9
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/Calculator.js",
                         lineNumber: 45,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                        className: ` text-red-500 text-sm ${submitted && !mortgageType ? 'block' : 'hidden'}`,
-                        children: "This field is required"
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/Calculator.js",
-                        lineNumber: 54,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -537,6 +540,7 @@ function Home() {
     const [mortgageType, setMortgageType] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     const [submitted, setSubmitted] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [showResult, setShowResult] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [calculations, setCalculations] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const clearAll = ()=>{
         setAmount("");
         setRate("");
@@ -544,51 +548,40 @@ function Home() {
         setMortgageType("");
         setSubmitted(false);
         setShowResult(false);
+        setCalculations(null);
     };
-    const handleAmount = (e)=>{
-        setAmount(e.target.value);
-    };
-    const handleTerm = (e)=>{
-        setTerm(e.target.value);
-    };
-    const handleRate = (e)=>{
-        setRate(e.target.value);
-    };
+    const handleAmount = (e)=>setAmount(e.target.value);
+    const handleTerm = (e)=>setTerm(e.target.value);
+    const handleRate = (e)=>setRate(e.target.value);
     const handleType = (e)=>{
         setMortgageType(e.target.value);
+        setSubmitted(false);
     };
     const handleSubmit = (e)=>{
         e.preventDefault();
         setSubmitted(true);
         setShowResult(false);
         if (amount === "" || rate === "" || term === "" || mortgageType === "") {
-            setShowResult(false);
-        } else {
-            setShowResult(true);
+            setCalculations(null);
+            return;
         }
+        // ✅ ---- RUN CALCULATION ONLY HERE ----
+        const principal = Number(amount);
+        const years = Number(term);
+        const annualRate = Number(rate);
+        const monthlyRate = annualRate / 100 / 12;
+        const totalMonths = years * 12;
+        const monthlyRepayment = principal * (monthlyRate * Math.pow(1 + monthlyRate, totalMonths)) / (Math.pow(1 + monthlyRate, totalMonths) - 1);
+        const totalRepaid = monthlyRepayment * totalMonths;
+        const interestOnlyMonthly = principal * monthlyRate;
+        setCalculations({
+            monthlyRate,
+            monthlyRepayment,
+            interestOnlyMonthly,
+            totalRepaid
+        }); // ✅ SAVE RESULTS
+        setShowResult(true); // ✅ Show result ONLY after calculation
     };
-    // ✅ ---- ALL CALCULATIONS IN CONTEXT ----
-    const calculations = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMemo"])({
-        "Home.useMemo[calculations]": ()=>{
-            if (!showResult) return null;
-            const principal = Number(amount);
-            const years = Number(term);
-            const annualRate = Number(rate);
-            const monthlyRate = annualRate / 100 / 12;
-            const totalMonths = years * 12;
-            const monthlyRepayment = principal * (monthlyRate * Math.pow(1 + monthlyRate, totalMonths)) / (Math.pow(1 + monthlyRate, totalMonths) - 1);
-            const totalRepaid = monthlyRepayment * totalMonths;
-            const interestOnlyMonthly = principal * monthlyRate;
-            return {
-                monthlyRate,
-                monthlyRepayment,
-                interestOnlyMonthly,
-                totalRepaid
-            };
-        }
-    }["Home.useMemo[calculations]"], [
-        showResult
-    ]);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$Contexts$2f$ResultContext$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ResultContext"].Provider, {
         value: {
             handleAmount,
@@ -612,32 +605,32 @@ function Home() {
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Calculator$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                         fileName: "[project]/src/app/page.js",
-                        lineNumber: 101,
+                        lineNumber: 95,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Result$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                         fileName: "[project]/src/app/page.js",
-                        lineNumber: 102,
+                        lineNumber: 96,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/page.js",
-                lineNumber: 100,
+                lineNumber: 94,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/src/app/page.js",
-            lineNumber: 99,
+            lineNumber: 93,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/app/page.js",
-        lineNumber: 82,
+        lineNumber: 76,
         columnNumber: 5
     }, this);
 }
-_s(Home, "PdwAKvM3YcNCdEW9HGu/7wWCksE=");
+_s(Home, "JuCxve6OJF1EPkiRWQ3fAdRuaqQ=");
 _c = Home;
 var _c;
 __turbopack_context__.k.register(_c, "Home");
